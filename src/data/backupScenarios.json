@@ -1,0 +1,132 @@
+[
+  {
+    "name": "New Reservation - Tamil Happy Path",
+    "description": "Basic table booking flow in Tamil",
+    "language": "Tamil",
+    "persona": "Office worker booking lunch",
+    "goal": "Book a table for 4 people tomorrow at 1pm",
+    "userMessages": [
+      "நாளைக்கு 4 பேருக்கு table book பண்ணணும்",
+      "1 மணிக்கு lunch time-ல",
+      "என் பேரு Ravi, phone number 9876543210",
+      "சரி confirm பண்ணுங்க"
+    ],
+    "expectedStates": ["Greetings", "Check_Availability", "Collect_Details", "Confirm_Booking"],
+    "expectedTools": ["check_availability_tool", "create_reservation_tool"],
+    "successCriteria": ["confirmation", "booked", "உறுதி"],
+    "tags": ["happy_path", "new_booking", "tamil"]
+  },
+  {
+    "name": "New Reservation - Hindi",
+    "description": "Basic table booking in Hindi",
+    "language": "Hindi",
+    "persona": "Family planning dinner",
+    "goal": "Book a table for 6 people on weekend",
+    "userMessages": [
+      "मुझे 6 लोगों के लिए टेबल बुक करना है",
+      "इस Saturday को शाम 7 बजे",
+      "मेरा नाम Priya है, number है 8765432109",
+      "हाँ, confirm कर दो"
+    ],
+    "expectedStates": ["Greetings", "Check_Availability", "Collect_Details", "Confirm_Booking"],
+    "expectedTools": ["check_availability_tool", "create_reservation_tool"],
+    "successCriteria": ["confirmation", "booked", "पुष्टि"],
+    "tags": ["happy_path", "new_booking", "hindi"]
+  },
+  {
+    "name": "Lookup Reservation - Tamil",
+    "description": "Customer looking up existing reservation",
+    "language": "Tamil",
+    "persona": "Customer checking their booking",
+    "goal": "Find and view existing reservation details",
+    "userMessages": [
+      "என் booking details பார்க்கணும்",
+      "என் phone number 9876543210",
+      "அவ்வளவுதான், thanks"
+    ],
+    "expectedStates": ["Greetings", "Lookup_Reservation", "View_Reservation"],
+    "expectedTools": ["lookup_reservation_tool", "get_reservation_history_tool"],
+    "successCriteria": ["reservation", "found", "details"],
+    "tags": ["lookup", "view", "tamil"]
+  },
+  {
+    "name": "Modify Reservation - Tamil",
+    "description": "Customer modifying party size",
+    "language": "Tamil",
+    "persona": "Customer increasing guest count",
+    "goal": "Change party size from 4 to 8 people",
+    "userMessages": [
+      "என் booking-ல change பண்ணணும்",
+      "confirmation number RES12345",
+      "4 பேரு இல்ல, 8 பேரு வருவாங்க",
+      "சரி confirm பண்ணுங்க"
+    ],
+    "expectedStates": ["Greetings", "Lookup_Reservation", "Modify_Reservation", "End_Conversation"],
+    "expectedTools": ["lookup_reservation_tool", "modify_reservation_tool"],
+    "successCriteria": ["modified", "updated", "8"],
+    "tags": ["modify", "party_size", "tamil"]
+  },
+  {
+    "name": "Cancel Reservation - Tamil",
+    "description": "Customer cancelling their booking",
+    "language": "Tamil",
+    "persona": "Customer with changed plans",
+    "goal": "Cancel existing reservation",
+    "userMessages": [
+      "என் reservation cancel பண்ணணும்",
+      "என் phone number 9876543210",
+      "ஆமா, cancel பண்ணுங்க"
+    ],
+    "expectedStates": ["Greetings", "Lookup_Reservation", "Cancel_Reservation", "End_Conversation"],
+    "expectedTools": ["lookup_reservation_tool", "cancel_reservation_tool"],
+    "successCriteria": ["cancelled", "cancel"],
+    "tags": ["cancel", "tamil"]
+  },
+  {
+    "name": "Large Party - Edge Case",
+    "description": "Booking for maximum party size",
+    "language": "Tamil",
+    "persona": "Event organizer",
+    "goal": "Book for 20 people (max capacity)",
+    "userMessages": [
+      "20 பேருக்கு table வேணும்",
+      "next Sunday 7pm",
+      "Arjun, 7654321098",
+      "birthday party, cake arrange பண்ண முடியுமா?"
+    ],
+    "expectedStates": ["Greetings", "Check_Availability", "Collect_Details", "Confirm_Booking"],
+    "expectedTools": ["check_availability_tool", "create_reservation_tool"],
+    "successCriteria": ["20", "confirmation", "special"],
+    "tags": ["edge_case", "large_party", "special_request"]
+  },
+  {
+    "name": "Invalid Time - Edge Case",
+    "description": "Booking outside operating hours",
+    "language": "Tamil",
+    "persona": "Late night diner",
+    "goal": "Try to book at 11pm (after closing)",
+    "userMessages": [
+      "நாளைக்கு 11pm-க்கு table வேணும்",
+      "4 பேரு"
+    ],
+    "expectedStates": ["Greetings", "Check_Availability"],
+    "expectedTools": ["check_availability_tool"],
+    "successCriteria": ["not available", "closed", "alternative"],
+    "tags": ["edge_case", "invalid_time", "error_handling"]
+  },
+  {
+    "name": "Reservation History - Tamil",
+    "description": "Customer viewing all past reservations",
+    "language": "Tamil",
+    "persona": "Regular customer",
+    "goal": "View all reservation history",
+    "userMessages": [
+      "என் எல்லா bookings-உம் பார்க்கணும்",
+      "9876543210"
+    ],
+    "expectedStates": ["Greetings", "View_Reservation"],
+    "expectedTools": ["get_reservation_history_tool"],
+    "successCriteria": ["history", "reservations", "list"],
+    "tags": ["history", "view_all", "tamil"]
+  }
+]

@@ -1,0 +1,75 @@
+{
+  "storage_type": "in_memory",
+  "note": "Each conversation starts fresh - no persistent database",
+  "tools": [
+    {
+      "name": "check_availability_tool",
+      "description": "Check reservation availability for a given date, time, and party size",
+      "required_inputs": ["reservation_date", "reservation_time", "party_size"],
+      "validations": {
+        "party_size": "1-20",
+        "time": "11:00-22:00 (HH:MM format)",
+        "date": "Must be future date"
+      }
+    },
+    {
+      "name": "create_reservation_tool",
+      "description": "Create a new reservation",
+      "required_inputs": ["customer_name", "customer_phone"],
+      "optional_inputs": ["reservation_date", "reservation_time", "party_size", "customer_email", "special_requests"],
+      "notes": "Uses values from agent variables if not provided directly"
+    },
+    {
+      "name": "lookup_reservation_tool",
+      "description": "Look up an existing reservation",
+      "inputs": ["confirmation_number", "phone_number"],
+      "notes": "At least one required, checks agent variables if not provided"
+    },
+    {
+      "name": "get_reservation_history_tool",
+      "description": "Retrieve all reservations for a customer by phone number",
+      "inputs": ["phone_number"],
+      "notes": "Uses agent variable if not provided"
+    },
+    {
+      "name": "modify_reservation_tool",
+      "description": "Modify an existing reservation",
+      "inputs": ["new_date", "new_time", "new_party_size", "new_special_requests"],
+      "notes": "Requires active reservation in session (confirmation_number in agent variables)"
+    },
+    {
+      "name": "cancel_reservation_tool",
+      "description": "Cancel an existing reservation",
+      "inputs": ["confirm_cancellation", "confirmation_number"],
+      "notes": "Requires confirm_cancellation=true to actually cancel"
+    }
+  ],
+  "test_scenarios": {
+    "new_reservation": {
+      "description": "Create a new reservation from scratch",
+      "flow": ["check_availability_tool", "create_reservation_tool"],
+      "required_data": {
+        "date": "Any future date",
+        "time": "Between 11:00-22:00",
+        "party_size": "1-20",
+        "name": "Customer name",
+        "phone": "10+ digit phone"
+      }
+    },
+    "modify_reservation": {
+      "description": "Create then modify a reservation",
+      "flow": ["check_availability_tool", "create_reservation_tool", "modify_reservation_tool"],
+      "notes": "Must create first in same session due to in-memory storage"
+    },
+    "cancel_reservation": {
+      "description": "Create then cancel a reservation",
+      "flow": ["check_availability_tool", "create_reservation_tool", "cancel_reservation_tool"],
+      "notes": "Must create first, then confirm cancellation"
+    },
+    "lookup_non_existent": {
+      "description": "Try to look up a reservation that doesn't exist",
+      "flow": ["lookup_reservation_tool"],
+      "expected": "RESERVATION_NOT_FOUND response"
+    }
+  }
+}

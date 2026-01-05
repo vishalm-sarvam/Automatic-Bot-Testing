@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:agent-docs.azurewebsites.net)",
+      "Bash(xargs:*)",
+      "Bash(tree:*)",
+      "Bash(pnpm create:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(pnpm exec tsr:*)",
+      "Bash(pnpm run build:*)",
+      "Bash(cat:*)",
+      "Bash(curl:*)",
+      "Bash(\"https://apps.sarvam.ai/api/app-authoring/orgs/sarvamai/workspaces/default/apps/Restaurant--2346c23a-3842?app_version=5&version_filter=specific&with_deployment_status=true&legacy=false\")",
+      "Bash(ls:*)",
+      "Bash(python3:*)",
+      "Bash(BEARER_TOKEN=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzYXJ2YW1haS92aXNoYWxtQHNhcnZhbS5haSIsImV4cCI6MTc2ODIwMDE0NS45MjE1ODYsIm9yZ19pZCI6InNhcnZhbWFpIiwidXNlcl9pZCI6InZpc2hhbG1Ac2FydmFtLmFpIiwibmFtZSI6InZpc2hhbG1Ac2FydmFtLmFpIiwiZW1haWwiOiJ2aXNoYWxtQHNhcnZhbS5haSIsInJvbGVzIjpbInZpZXdlciIsImF1dGhvciJdLCJjb19yb2xlcyI6WyJ2aWV3ZXIiLCJhdXRob3IiXX0.K2-ZFpyBbppXlf9VRkleewn2UsI4Rt-dhebLuk_Yu8U\")",
+      "Bash(__NEW_LINE__ curl -s -w \"\\\\n\\\\nHTTP Status: %{http_code}\\\\n\" -X PUT )",
+      "Bash(\"https://apps.sarvam.ai/api/app-authoring/orgs/sarvamai/workspaces/default/apps/Scenario-Cr-ec91a1b0-1649?is_prompt_change=true\" )",
+      "Bash(__NEW_LINE__ curl -s --max-time 15 \"https://apps.sarvam.ai/api/app-authoring/orgs/sarvamai/workspaces/default/apps/Scenario-Cr-ec91a1b0-1649?app_version=1\" )",
+      "Bash(__NEW_LINE__ curl -v --max-time 15 \"https://apps.sarvam.ai/api/app-authoring/orgs/sarvamai/workspaces/default/apps/Scenario-Cr-ec91a1b0-1649?app_version=5&version_filter=specific&with_deployment_status=true&legacy=false\" )",
+      "Bash(__NEW_LINE__ curl -s --max-time 15 \"https://apps.sarvam.ai/api/app-authoring/orgs/sarvamai/workspaces/default/apps/Scenario-Cr-ec91a1b0-1649\" -H \"Authorization: Bearer $BEARER_TOKEN\" -o /tmp/agent_latest.json)",
+      "Bash(__NEW_LINE__ echo \"Testing text-chat...\")",
+      "Bash(\"https://apps.sarvam.ai/api/app-runtime/channels/text-chat/orgs/sarvamai/workspaces/default/apps/Scenario-Cr-ec91a1b0-1649/text-chat?app_version=1\" )",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
